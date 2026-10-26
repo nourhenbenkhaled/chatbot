@@ -1,7 +1,10 @@
-#requirement.txt
 streamlit
 openai
 python-dotenv
 groq
 langchain
 chromadb
+pypdf
+dotenv
+bcrypt
+huggingface_hub
