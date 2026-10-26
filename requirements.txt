@@ -8,3 +8,4 @@ pypdf
 dotenv
 bcrypt
 huggingface_hub
+sentence_transformers
