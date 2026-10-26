@@ -69,6 +69,11 @@ def supprimer_conversation(conv_id):
     requete("DELETE FROM conversations WHERE id = ?", (conv_id,))
 
 
+def supprimer_toutes_conversations():
+    requete("DELETE FROM messages")
+    requete("DELETE FROM conversations")
+
+
 def transcrire(audio):
     resultat = client.audio.transcriptions.create(
         file=(audio.name or "voix.wav", audio.getvalue()),
@@ -188,6 +193,16 @@ with st.sidebar:
             if actif:
                 st.session_state.conv_id = None
             st.rerun()
+            
+    
+    st.divider()
+
+    if st.button("🗑️ Supprimer toutes les conversations",
+                 use_container_width=True):
+        supprimer_toutes_conversations()
+        st.session_state.conv_id = None
+        st.rerun()
+        
     if st.button("🚪 Se déconnecter", use_container_width=True):
         st.session_state.authenticated = False
         st.session_state.user = None
